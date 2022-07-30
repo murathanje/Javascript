@@ -1,23 +1,66 @@
-var name = promt("");
+let isim = prompt("Lütfen isminizi giriniz!");
+function showTime() {
+    document.getElementById("myName").innerHTML = isim;
+    const today = new Date();
+    let day = today.getDay();
+    let hour = today.getHours();
+    let minute = today.getMinutes();
+    let second = today.getSeconds();
+    minute = CheckTime(minute);
+    second = CheckTime(second);
+    day = checkDay(day)
 
-function showTime(){
-    const minute = 1000 * 60;
-    const hour = minute * 60;
-    const day = hour * 24;
-    const second = minute / 60;
 
-    // Divide Time with a year
-    const d = new Date();
-    let days = Math.round(d.getTime() / day);
-    let hours = Math.round(d.getTime() / hour);
-    let minutes = Math.round(d.getTime() / minute);
-    let sec = Math.round(d.getTime() / second);
-
-    document.getElementById("myClock").innerHTML = `${hours}:${minutes}:${sec} ${days}`
+    document.getElementById("myClock").innerHTML = `${hour}:${minute}:${second} ${day}`
+    setTimeout(showTime, 1000)
 }
 
 
-function ben(){
-    document.getElementById("ilk").style.backgroundColor = "red"
+function CheckTime(i) {
+    if (i < 10) {
+        i = "0" + i;
+        return i;
+    } else {
+        return i;
+    }
 }
 
+
+function checkDay(i) {
+
+    switch (i) {
+        case 1:
+            return "Pazartesi";
+            break;
+        case 2:
+            return "Salı";
+            break;
+        case 3:
+            return "Çarşamba";
+            break;
+        case 4:
+            return "Perşembe";
+            break;
+        case 5:
+            return "Cuma";
+            break;
+        case 6:
+            return "Cumartesi";
+            break;
+        case 7:
+            return "Pazar";
+            break;
+    }
+
+}
+showTime();
+
+
+
+let al = document.getElementById("myName");
+
+al.addEventListener("mouseup", yap);
+function yap(){
+    this.style.color = "red"
+   
+}
