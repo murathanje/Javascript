@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <form id="userForm">
+        <div class="mb-3">
+            <label for="username">Kullanici Adi</label>
+            <input type="text" name="username" id="username">
+        </div>
+        <div class="mb-3">
+            <label for="score">Not Bilgisi</label>
+            <input type="number" name="score" id="score">
+        </div>
+        <div class="mb-3">
+            <button type="reset" class="btn btn-danger">Sifirla</button>
+            <button type="submit" class="btn btn-success">Gönder</button>
+        </div>
+        <div class="col-sm-8 offset-sm-2 mt-4">
+            <ul class="list-group" id="userList">
+                <!-- <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Morbi leo risus
+                    <span class="badge badge-primary badge-pill">1</span>
+                </li> -->
+            </ul>
+        </div>
+    </form>
+    <script src="script.js"></script>
+</body>
+</html>
