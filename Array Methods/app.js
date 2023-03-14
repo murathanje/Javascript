@@ -56,7 +56,7 @@ console.log(telefonlar.concat(apps))
 
 console.log(telefonlar.slice(2))
 
-let isimler = "Ali,Veli,Murathan"
+let isimler = "Murathan"
 console.log(isimler.split(","))
 
 console.log(telefonlar.indexOf("Huawei"))
@@ -100,3 +100,39 @@ function indirgeyici(akumulator, sayi){
 }
 let sonuc = sayilar.reduce(indirgeyici, 0);
 console.log(sonuc)
+
+let nums = [1,2,3,6,6,5]
+function getSecondLargest(nums) {
+    let sayi = -1
+    nums.forEach(function(num){
+        if(num > sayi){
+            sayi = num;
+        }
+    })
+    let sayi1 = -1
+    nums.forEach(function(num){
+        if(num > sayi1 && num < sayi){
+            sayi1 = num;
+        }
+    })
+    
+    return sayi1;
+}
+console.log(getSecondLargest(nums))
+
+let  s = "Javascript"
+function vowelsAndConsonants(s) {
+    for(let i=0; i < s.length; i++){
+        if(s.charAt(i).toLowerCase() == "a" || s.charAt(i).toLowerCase() == "e" ||  s.charAt(i).toLowerCase() == "i" || s.charAt(i).toLowerCase() == "o" ||  s.charAt(i).toLowerCase() == "u"){
+         console.log(s.charAt(i));  
+        }
+    }
+    
+     for(let j=0; j < s.length; j++){
+         if (s.charAt(j).toLowerCase() != "a" && s.charAt(j).toLowerCase() != "e" &&  s.charAt(j).toLowerCase() != "o" && s.charAt(j).toLowerCase() != "i"  &&  s.charAt(j).toLowerCase() != "u"){
+         console.log(s.charAt(j));  
+        }
+    }
+}
+
+vowelsAndConsonants(s);
