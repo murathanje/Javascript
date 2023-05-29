@@ -9,9 +9,10 @@ const clearButton = document.querySelector("#todoClearButton");
 let todos = [];
 
 function runEvents() {
+    addTodoUI();
     form.addEventListener("submit", addTodo);
     // deleteButton.addEventListener("click", deleteItem);
-    
+
 }
 
 function addTodo(e) {
@@ -19,43 +20,48 @@ function addTodo(e) {
     if (inputText === "" || inputText == null) {
         alert("Please enter a valid todo");
     } else {
-        //Arayüze ekleme
-        addTodoUI(inputText);
         //Storage ekleme
         addStorage(inputText);
     }
     console.log("Submit eventı çalıştı");
     e.preventDefault();
 }
-runEvents();
 
-function addTodoUI(newTodo) {
-    
-    const li = document.createElement("li");
-    const a = document.createElement("a");
-    const i = document.createElement("i");
-    li.className = "list-group-item d-flex justify-content-between";
-    a.className = "delete-item";
-    a.href = "deleteTodo()";
-    i.className = "fa fa-remove";
-    li.textContent = newTodo; 
-    a.appendChild(i);
-    li.appendChild(a);
-    ulList.appendChild(li);
+function addTodoUI() {
+    todos = JSON.parse(localStorage.getItem("todos"));
+    if (todos != null) {
+        todos.forEach(element => {
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            const i = document.createElement("i");
+            li.className = "list-group-item d-flex justify-content-between";
+            a.className = "delete-item";
+            a.href = "deleteTodo()";
+            i.className = "fa fa-remove";
+            li.textContent = element;
+            a.appendChild(i);
+            li.appendChild(a);
+            ulList.appendChild(li);
+        });
+    }
     addInput.value = "";
 
 }
 
-function addStorage(newTodo){
+function addStorage(newTodo) {
     checkTodosFromStorage();
     todos.push(newTodo);
     localStorage.setItem("todos", JSON.stringify(todos));
+    addTodoUI(inputText);
+
 }
 
-function checkTodosFromStorage(){
-    if(localStorage.getItem("todos") !== null){
+function checkTodosFromStorage() {
+    if (localStorage.getItem("todos") !== null) {
         todos = JSON.parse(localStorage.getItem("todos"));
-    }else{
+    } else {
         todos = [];
     }
 }
+
+runEvents();
