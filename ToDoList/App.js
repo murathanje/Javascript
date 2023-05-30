@@ -17,12 +17,14 @@ function runEvents() {
 function addTodo(e) {
     const inputText = addInput.value.trim();
     if (inputText === "" || inputText == null) {
-        alert("Please enter a valid todo");
+        showAlert("danger","Lütfen boş bırakmayınız!")
     } else {
         //Arayüze ekleme
         addTodoUI(inputText);
         //Storage ekleme
         addStorage(inputText);
+        // Uyarı 
+        showAlert("success","Başarıyla eklendi");
     }
     console.log("Submit eventı çalıştı");
     e.preventDefault();
@@ -58,4 +60,14 @@ function checkTodosFromStorage(){
     }else{
         todos = [];
     }
+}
+
+function showAlert(type,message){
+    const alert = document.createElement("div");
+    alert.className = `alert alert-${type}`;
+    alert.textContent = message;
+    firstCardBody.appendChild(alert);
+    setTimeout(function(){
+        alert.remove();
+    },2000);
 }
