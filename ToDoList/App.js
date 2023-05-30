@@ -4,13 +4,15 @@ const ulList = document.querySelector(".list-group");
 const firstCardBody = document.querySelectorAll(".card-body")[0];
 const lastCardBody = document.querySelectorAll(".card-body")[1];
 const clearButton = document.querySelector("#todoClearButton");
-// const deleteButton = document.querySelector(".delete-item");
+const deleteButton = document.querySelector("#todoClearButton");
 
 let todos = [];
 
 function runEvents() {
     form.addEventListener("submit", addTodo);
-    // deleteButton.addEventListener("click", deleteItem);
+    document.addEventListener("DOMContentLoaded",pageLoaded);
+    lastCardBody.addEventListener("click",removeTodo);
+    deleteButton.addEventListener("click", removeAll);
     
 }
 
@@ -38,7 +40,7 @@ function addTodoUI(newTodo) {
     const i = document.createElement("i");
     li.className = "list-group-item d-flex justify-content-between";
     a.className = "delete-item";
-    a.href = "deleteTodo()";
+    a.href = "#";
     i.className = "fa fa-remove";
     li.textContent = newTodo; 
     a.appendChild(i);
@@ -70,4 +72,48 @@ function showAlert(type,message){
     setTimeout(function(){
         alert.remove();
     },2000);
+}
+
+function pageLoaded(){
+    checkTodosFromStorage();
+    todos.forEach(function(todo){
+        addTodoUI(todo);
+    });
+}
+
+function removeTodo(e){
+    if(e.target.className == "fa fa-remove"){
+        const todo = e.target.parentElement.parentElement;
+        todo.remove();
+        showAlert("success","Todo başarıyla silindi!")
+        removeTodoStorage(todo.textContent);
+    }    
+}
+
+function removeTodoStorage(removeTodo){
+    checkTodosFromStorage();
+    todos.forEach(function(todo,index){
+        if(todo === removeTodo){
+            todos.splice(index,1);
+        }
+    });
+    localStorage.setItem("todos", JSON.stringify(todos));
+
+}
+
+function removeAll() {
+
+    const todoListesi = document.querySelectorAll(".list-group-item");
+    if(todoListesi.length == 0){
+        showAlert("danger","Liste boş!");
+    }else{
+        todoListesi.forEach(function(todo){
+            todo.remove();
+
+        });
+        showAlert("success","Liste başarıyla temizlendi!");
+        todos = [];
+        localStorage.setItem("todos", JSON.stringify(todos));
+        
+    }
 }
