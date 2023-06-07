@@ -12,9 +12,7 @@ sum(...numbers);   // using func with spread
 const brands = ["Mercedes","Audi"]
 const brands1 = ["BMW", "Ferrari", ...brands];
 
-brands1.forEach((brand) => {
-    console.log(brand);
-})
+brands1.forEach(brand => console.log(brand))
 
 const numbes = [1,2,3,4,5,6,7,8,9]
 
