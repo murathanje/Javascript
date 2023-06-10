@@ -30,24 +30,24 @@ const users = [
     
 ]
 
-function getUserId(){
+function getUserId(callback){
     setTimeout(()=>{
-        return 5;
+        let number = 5;
+        callback(number);
     },1000)
 }
 
-function getPost(userId){
+function getPost(number){
     setTimeout(()=>{
         users.forEach((user)=>{
-            if(user.userId == userId){
+            if(user.userId == number){
                 console.log(user.post)
             }
         })
-    },500);
+    },1000);
 }
 
-let userId = getUserId();
-getPost(userId)
+getUserId(getPost)
 
 
 // Call Back   Bir fonskiyonu bir fonksiyona parametre olarak verilmesidir.
@@ -80,3 +80,30 @@ getName((name)=>{
         });
     });
 });
+
+//      AJAX
+
+// const xhr = new XMLHttpRequest();
+// console.log(xhr)
+
+function prepareURL(url, id){
+    if(id === null){
+        return url;
+    }else{
+        return `${url}/?postId=${id}`;
+    }
+}
+function getComments(url, id){
+    let newURL = prepareURL(url,id);
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener("readystatechange",()=>{
+        if(xhr.readyState == 4 && xhr.status ==200){
+            console.log(JSON.parse(xhr.responseText));
+        }
+    })
+
+    xhr.open("GET", newURL);
+    xhr.send();
+}
+
+getComments("https://jsonplaceholder.typicode.com/comments",1)
