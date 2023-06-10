@@ -48,3 +48,35 @@ function getPost(userId){
 
 let userId = getUserId();
 getPost(userId)
+
+
+// Call Back   Bir fonskiyonu bir fonksiyona parametre olarak verilmesidir.
+
+function getName(callback){
+    setTimeout(()=> {
+        let name = "Murathan";
+        callback(name);
+    },1000)
+}
+
+function getLastName(callback){
+    setTimeout(() => {
+        let surName = "Bayram"
+        callback(surName);
+    }, 1000)
+}
+
+function getAge(callback){
+    setTimeout(() => {
+        let age = 25;
+        callback(age);
+    },1000);
+}
+
+getName((name)=>{
+    getLastName((surName)=>{
+        getAge((age)=>{
+            console.log(name, surName, age)
+        });
+    });
+});
