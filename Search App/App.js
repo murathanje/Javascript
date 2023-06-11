@@ -42,13 +42,12 @@ function addImageToUI(url){
 
     const img = document.createElement("img");
     img.setAttribute("src", url);
-    img.height = "400";
-    img.width = "400";
     div.append(img)
     imageListWarpper.append(div);
 }
 
 function clearAll(){
-    Array.from(imageListWarpper.children).forEach(card=>card.remove()) 
+    // Array.from(imageListWarpper.children).forEach(card=>card.remove()) 
+    imageListWarpper.innerHTML = "";
     inputSearch.value = "";
 }
