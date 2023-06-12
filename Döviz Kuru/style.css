@@ -1,0 +1,45 @@
+#main {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid lightgrey;
+    width: 600px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 50px auto;
+    background-color: aliceblue;
+}
+
+h4 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+hr {
+    width: 70%;
+    background-color: grey;
+}
+
+#amount {
+    text-align: center;
+    padding: 5px;
+}
+
+#result {
+    text-align: center;
+    padding: 5px;
+}
+
+select {
+    padding: 5px;
+}
+
+input {
+    margin: 0 10px;
+    width: 30%;
+}
+
+span {
+    display: block;
+    margin-top: 20px;
+}
